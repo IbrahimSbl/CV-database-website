@@ -1,0 +1,136 @@
+﻿@page
+@model CVProject.Pages.SendModel
+@{
+	ViewData["Title"] = "Send CV";
+	Layout = "_Layout";
+}
+
+<p>Please enter a valid information</p>
+<form action="" method="post" enctype="multipart/form-data">
+@{
+	/*
+	 * 	First name (string)
+• Last Name (string)
+• Date of Birth (Date)
+• Nationality (string) – DropDown List
+• Gender (string) – Radio Buttons 
+• Programming Skills (Java, C#, Python, R, etc.) - CheckBoxes
+• Email (email)
+• Confirm Email (email) – should be validated to be equal to Email
+• Verification Fields
+o X (number between 1 and 20)
+o Y (number between 20 and 50)
+o Sum (number)
+• Photo – (File
+	 */
+
+}	
+	<div asp-validation-summary="All" class="summary"></div>
+	<div class="form-group">
+		<label asp-for="Input.fname" >First Name:</label>
+		<input class="form-control" asp-for="Input.fname"/>
+		<span asp-validation-for="Input.fname" class="text-danger "></span>
+	</div>
+	
+	<div class="form-group">
+		<label asp-for="Input.lname" >Last Name:</label>
+		<input class="form-control" asp-for="Input.lname"/>
+		<span asp-validation-for="Input.lname" class="text-danger "></span>
+	</div>
+
+	<div class="form-group">
+		<label asp-for="Input.Bdate" >Birth date:</label>
+		<input type="date" class="form-control" asp-for="Input.Bdate"/>
+		<span asp-validation-for="Input.Bdate" class="text-danger "></span>
+	</div>
+
+	<div class="form-group">
+		<label asp-for="Input.Nationality" >Nationality:</label>
+		<select class="form-control" asp-for="Input.Nationality">
+			<option>Lebanon</option>
+			<option>Syria</option>
+			<option>Iraq</option>
+			<option>Egypt</option>
+			<option>Iran</option>
+			<option>UAE</option>
+			<option>United States</option>
+			<option>United Kingdom</option>
+			<option>Afganistan</option>
+			<option>France</option>
+			<option>Russia</option>
+		</select>
+		<span asp-validation-for="Input.Nationality" class="text-danger "></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="Input.gender" >Gender:</label>
+		<br />
+		<input type="radio" class="form-check-input" asp-for="Input.gender" value="male"/><p class="form-par">male</p><br>
+		<input type="radio" class="form-check-input" asp-for="Input.gender" value = "female"/><p class="form-par">female</p><br />
+		<span asp-validation-for="Input.gender" class="text-danger "></span>
+	</div>
+
+	<div class="form-group">
+		<label asp-for="Input.programing" >Programming:</label>
+		<br />
+		@for(int i=0;i< Model.skillsList.Length; i++)
+		{
+			<input type="checkbox" class="form-check-input" asp-for="@Model.Input.programing[i]" /><p class="form-par">@Model.skillsList[i]</p><br />	
+		}
+		@{/*
+		<input type="checkbox" class="form-check-input" asp-for="Input.programing[0]" /><p class="form-par">java</p><br />
+		<input type="checkbox" class="form-check-input" asp-for="Input.programing[1]" /><p class="form-par">C</p><br />
+		<input type="checkbox" class="form-check-input" asp-for="Input.programing[2]" /><p class="form-par">C++</p><br />
+		<input type="checkbox" class="form-check-input" asp-for="Input.programing[3]" /><p class="form-par">C#</p><br />
+		<input type="checkbox" class="form-check-input" asp-for="Input.programing[4]" /><p class="form-par">python</p><br />
+		<input type="checkbox" class="form-check-input" asp-for="Input.programing[5]" /><p class="form-par">javaScript</p><br />
+		*/
+		}
+		<span asp-validation-for="Input.programing" class="text-danger "></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="Input.email" >Enter an email:</label>
+		<input class="form-control" asp-for="Input.email"/>
+		<span asp-validation-for="Input.email" class="text-danger "></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="Input.vemail" >Renter your email:</label>
+		<input class="form-control" asp-for="Input.vemail"/>
+		<span asp-validation-for="Input.vemail" class="text-danger "></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="Input.x" >First number:</label>
+		<input class="form-control" asp-for="Input.x" placeholder="Number between 1 and 20"/>
+		<span asp-validation-for="Input.x" class="text-danger  "></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="Input.y" >Second number:</label>
+		<input class="form-control" asp-for="Input.y" placeholder="Number between 20 and 50"/>
+		<span asp-validation-for="Input.y" class="text-danger "></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="Input.sum" >Sum:</label>
+		<input class="form-control" asp-for="Input.sum" placeholder="The sum of the two numbers"/>
+		<span asp-validation-for="Input.sum" class="text-danger ">
+  </span>
+	</div> 
+    <div class="form-group">  
+        <label asp-for="ProfileImage"></label>  
+        <div class="custom-file">  
+             <input class="custom-file-input" asp-for= "ProfileImage">  
+             <label class="custom-file-label" for="customFile">Choose file</label>  
+        </div>  
+        <span asp-validation-for="ProfileImage" class="text-danger"></span>  
+    </div>  
+	<button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
+
+@section scripts{  
+    <script type="text/javascript">  
+        // Add the following code if you want the name of the file appear on select  
+        $(".custom-file-input").on("change", function () {  
+            var fileName = $(this).val().split("\\").pop();  
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);  
+        });  
+    </script>  
+}  

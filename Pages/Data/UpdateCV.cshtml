@@ -1,0 +1,82 @@
+﻿@page "{id}"
+@model CVProject.Pages.Data.UpdateCVModel
+@{
+}
+
+<form method="post" class="form-horizontal">
+	<input type="hidden" asp-for="Input.Id" value = "@Model.id"/>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    	<div asp-validation-summary="All" class="summary"></div>
+	<div class="form-group">
+		<label asp-for="Input.fname" >First Name:</label>
+		<input class="form-control" asp-for="Input.fname"/>
+		<span asp-validation-for="Input.fname" class="text-danger "></span>
+	</div>
+	
+	<div class="form-group">
+		<label asp-for="Input.lname" >Last Name:</label>
+		<input class="form-control" asp-for="Input.lname"/>
+		<span asp-validation-for="Input.lname" class="text-danger "></span>
+	</div>
+
+	<div class="form-group">
+		<label asp-for="Input.Bdate" >Birth date:</label>
+		<input type="date" class="form-control" asp-for="Input.Bdate"/>
+		<span asp-validation-for="Input.Bdate" class="text-danger "></span>
+	</div>
+
+	<div class="form-group">
+		<label asp-for="Input.Nationality" >Nationality:</label>
+		<select class="form-control" asp-for="Input.Nationality">
+			<option>Lebanon</option>
+			<option>Syria</option>
+			<option>Iraq</option>
+			<option>Egypt</option>
+			<option>Iran</option>
+			<option>UAE</option>
+			<option>United States</option>
+			<option>United Kingdom</option>
+			<option>Afganistan</option>
+			<option>France</option>
+			<option>Russia</option>
+		</select>
+		<span asp-validation-for="Input.Nationality" class="text-danger "></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="Input.gender" >Gender:</label>
+		<br />
+		<input type="radio" class="form-check-input" asp-for="Input.gender" value="male"/><p class="form-par">male</p><br>
+		<input type="radio" class="form-check-input" asp-for="Input.gender" value = "female"/><p class="form-par">female</p><br />
+		<span asp-validation-for="Input.gender" class="text-danger "></span>
+	</div>
+
+	<div class="form-group">
+		<label asp-for="Input.programing" >Programming:</label>
+		<br />
+		@for(int i=0;i< Model.skillsList.Length; i++)
+		{
+			<input type="checkbox" class="form-check-input" asp-for="@Model.Input.programing[i]" /><p class="form-par">@Model.skillsList[i]</p><br />	
+		}
+		@{/*
+		<input type="checkbox" class="form-check-input" asp-for="Input.programing[0]" /><p class="form-par">java</p><br />
+		<input type="checkbox" class="form-check-input" asp-for="Input.programing[1]" /><p class="form-par">C</p><br />
+		<input type="checkbox" class="form-check-input" asp-for="Input.programing[2]" /><p class="form-par">C++</p><br />
+		<input type="checkbox" class="form-check-input" asp-for="Input.programing[3]" /><p class="form-par">C#</p><br />
+		<input type="checkbox" class="form-check-input" asp-for="Input.programing[4]" /><p class="form-par">python</p><br />
+		<input type="checkbox" class="form-check-input" asp-for="Input.programing[5]" /><p class="form-par">javaScript</p><br />
+		*/
+		}
+		<span asp-validation-for="Input.programing" class="text-danger "></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="Input.email" >Enter an email:</label>
+		<input class="form-control" asp-for="Input.email"/>
+		<span asp-validation-for="Input.email" class="text-danger "></span>
+	</div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+    </div>
+</form>

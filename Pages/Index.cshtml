@@ -1,0 +1,16 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>We will help you build your own CV's.</p>
+    <div class="container-fluid d-flex justify-content-center" style='width: 932px;height: 410px;background-image:url(images/Welcome.png);background-repeat-x: no-repeat;'>
+        <div class="d-flex flex-row justify-content-between" style="height: fit-content;margin-top: 310px;width: 200px;">
+            <a class="btn btn-primary search" asp-page="Data/DisplayRecords">Search CV's</a>
+            <a class="btn btn-outline-danger" asp-page="Send">Send CV</a>
+        </div>
+    </div>
+</div>

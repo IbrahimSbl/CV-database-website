@@ -1,0 +1,41 @@
+﻿@page "{id}/{handler?}"
+@model CVProject.Pages.Data.ViewCVModel
+@{
+}
+<h3>View CV Id = @Model.id</h3>
+<form asp-page-handler="Delete" asp-route-id="@Model.CV.Id">
+<div class="card">
+	<div class="card-body">
+		<div class="card-title" style="display: flex;">
+			@{string Image = Model.CV.FName+"_"+Model.id+"."+Model.CV.ProfilePicture.Split(".")[1];
+			  
+			}
+			<img class=" rounded-pill" src="~/images/@Image" style="width: 100px;"/>
+			<h5 style="padding-left:60px;padding-top:30px;">@Model.CV.FName @Model.CV.LName</h5>
+		</div>
+		<hr />
+		<div class="card-text">
+			<h5>Country :</h5> @Model.CV.Nationality
+			<h5>BirthDate :</h5> @Model.CV.BDate
+			<h5>Gender :</h5> @Model.CV.Gender
+			<h5>Skills : </h5>
+			@{
+				string[] skills = @Model.CV.skills.Split("_");
+			}
+			<ul>
+				@for(int i = 0; i< skills.Length-1; i++)
+				{	
+					<li>@skills[i]</li>
+				}
+			</ul>
+			
+			<h5>Email :</h5> @Model.CV.Email
+			<h5>Mark :</h5> @Model.CV.Mark
+		</div>
+		<div class="card-link">
+			<button class="btn btn-danger">Delete</button>     
+			<a class="btn btn-success" asp-Page="UpdateCV" asp-route-id="@Model.id">Update</a>
+		</div>
+	</div>
+</div>
+</form>
